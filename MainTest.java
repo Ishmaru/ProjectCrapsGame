@@ -13,8 +13,19 @@ class MainTest {
 
 	}
 	@Test
-	void checkRoll1() {
-		int results = testRoll.initialRoll(testRoll.rollDice());
-		assertEquals(0, results);
+	void checkRoll1Win() {
+		int results = testRoll.initialRoll(7);
+		assertEquals(1, results);
+	}
+	@Test
+	void checkRoll2Loss() {
+		int results = testRoll.secondaryRoll(7);
+		assertEquals(-1, results);
+	}
+	@Test
+	void checkRoll2Win() {
+		testRoll.point = 10;
+		int results = testRoll.secondaryRoll(10);
+		assertEquals(1, results);
 	}
 }
