@@ -18,6 +18,16 @@ class MainTest {
 		assertEquals(1, results);
 	}
 	@Test
+	void checkRoll1Loss() {
+		int results = testRoll.initialRoll(2);
+		assertEquals(-1, results);
+	}
+	@Test
+	void checkRoll1Else() {
+		int results = testRoll.initialRoll(5);
+		assertEquals(0, results);
+	}
+	@Test
 	void checkRoll2Loss() {
 		int results = testRoll.secondaryRoll(7);
 		assertEquals(-1, results);
@@ -27,5 +37,11 @@ class MainTest {
 		testRoll.point = 10;
 		int results = testRoll.secondaryRoll(10);
 		assertEquals(1, results);
+	}
+	@Test
+	void checkRoll2Else() {
+		testRoll.point = 10;
+		int results = testRoll.secondaryRoll(6);
+		assertEquals(0, results);
 	}
 }
