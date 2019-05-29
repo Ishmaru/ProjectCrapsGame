@@ -1,8 +1,9 @@
+package craps;
 import java.util.Scanner;
 //import java.util.Random;
 
 public class DiceRoll {
-	static int point;
+	public static int point;
 	public int rollDice(){
 		
 		int dice1 = 1 + (int)(Math.random() * 6);
