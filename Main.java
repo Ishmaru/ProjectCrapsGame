@@ -58,6 +58,7 @@ public class Main {
 			scanObj = new Scanner(System.in);
 			selection = scanObj.nextLine();
 		}
+		scanObj.close();
 
 	}
 }

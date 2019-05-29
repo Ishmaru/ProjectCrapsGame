@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class DiceRoll {
 	public static int point;
+	
+	
 	public int rollDice(){
 		
 		int dice1 = 1 + (int)(Math.random() * 6);
@@ -12,7 +14,7 @@ public class DiceRoll {
 		return dice1 + dice2;
 	}
 	
-	
+	//Method handles conditions of first roll only. Returns -1 = loss, 1 = wins, 0 = reRoll.
 	public int initialRoll(int total){
 			
 		if(total == 7 || total == 11) 
@@ -30,6 +32,7 @@ public class DiceRoll {
 		}
 	}
 	
+	//Method handles conditions of rolls two and onward. Returns -1 = loss, 1 = wins, 0 = reRoll.
 	public int secondaryRoll(int total){
 		if(total == point)
 		{

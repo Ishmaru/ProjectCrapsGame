@@ -3,50 +3,44 @@ public class Wallet {
 	private double currMoney;
 	private double currBet;
 	
-	public Wallet(double money) {
+	public Wallet(double money) 
+	{
 		this.currMoney = money;
 	}
 	
-//	public void setBet(String string){
-//		System.out.println("Incorrect Input");
-//	}
-	
-	public String setBet(double money){
-		if(money>this.currMoney) {
+	//Sets the bet amount, if more than the currentMoney then bet all current Money
+	public double setBet(double money)
+	{
+		if(money>this.currMoney) 
+		{
 			this.currBet = this.currMoney;
-			return "You don't have enough chips!";
 		}else {
 			this.currBet = money;
-			return "Good luck! Bet is "+ this.currBet;
 		}
-		
+		return this.currBet;
 	}
 	
-	public String setMoney(double amount, boolean win) {
-		System.out.println("passed bet: " + amount);
-		if(this.currMoney < 0)
+	//Ads or subtracts based on win or loss
+	public double setMoney(double amount, boolean win) 
+	{
+		if(win == true) 
 		{
-			return "You are out of money!";
+			this.currMoney += amount;
 		}
 		else
 		{
-			if(win == true) 
-			{
-				this.currMoney += amount;
-			}
-			else
-			{
-				this.currMoney -= amount;
-			}
-			return "Good luck shooter!";
+			this.currMoney -= amount;
 		}
-	}
-	
-	public double getMoney() {
 		return this.currMoney;
 	}
 	
-	public double getBet() {
+	public double getMoney() 
+	{
+		return this.currMoney;
+	}
+	
+	public double getBet() 
+	{
 		return this.currBet;
 	}
 }
