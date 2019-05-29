@@ -7,7 +7,7 @@ public class Wallet {
 	{
 		this.currMoney = money;
 	}
-	
+
 	//Sets the bet amount, if more than the currentMoney then bet all current Money
 	public double setBet(double money)
 	{

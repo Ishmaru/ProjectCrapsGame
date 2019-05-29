@@ -1,17 +1,17 @@
 import java.util.Scanner;
-
+//import java.util.Exception;
 import com.craps.DiceRoll;
 import com.craps.Wallet;
 public class Main {
 
 	public static void main(String[] args) {
-		
+		//Initialize instances here:
 		DiceRoll dice =  new DiceRoll();
 		Wallet wallet =  new Wallet(1000.00);
 		
+		//Initial Message
 		System.out.println("Welcome to Tech Talent South craps");
 		System.out.println("You have: " + wallet.getMoney() + " Press 's' to shoot 'q' to quit");
-
 		Scanner scanObj = new Scanner(System.in);
 		String selection = scanObj.nextLine();
 		
@@ -23,45 +23,70 @@ public class Main {
 			{
 				scanObj = new Scanner(System.in);
 				System.out.println("How much would you like to bet?");
-				double bet = scanObj.nextDouble();
+				
+				// In case a input cannot be resolved to a double, set bet to 0.0;
+				double bet = 0;
+				try {
+					bet = scanObj.nextDouble();
+				}
+				catch(Exception e) {
+					System.out.println("Bets must be made in numbers!");
+				}
 				wallet.setBet(bet);
+				System.out.println("You bet: " + wallet.getBet());
 				
+				
+				//Roll dice and Check results from initialRoll()
 				int res = dice.initialRoll(dice.rollDice());
-				
 				if(res == 1) 
 				{
-					System.out.println("Win");
+					System.out.println("Winner easy!");
 					wallet.setMoney(wallet.getBet(), true);
 				}
 				else if (res == -1)
 				{
-					System.out.println("Loss");
+					System.out.println("Not this time, friend!");
 					wallet.setMoney(wallet.getBet(), false);
 				}
 				else
 				{
-					//While loop for successive rools after first
-					while(current == 0){
+					//While loop for successive rolls after first
+					while(current == 0)
+					{
 						current = dice.secondaryRoll(dice.rollDice());
+						
+						//Check results from secondaryRoll()
 						if(current==-1)
 						{
-							System.out.println("Loss");
+							System.out.println("Sorry, you crapped out!");
 							wallet.setMoney(wallet.getBet(), false);
 						}
 						if(current==1)
 						{
-							System.out.println("Win");
+							System.out.println("Winner, winner chicken dinner!");
 							wallet.setMoney(wallet.getBet(), true);
 						}
 					}
 				}
 			}
-			dice.point = 0;
-			System.out.println("You have: " + wallet.getMoney() + " Press 's' to shoot 'q' to quit");
-			scanObj = new Scanner(System.in);
-			selection = scanObj.nextLine();
+			
+			//Re initialize for new game
+			DiceRoll.point = 0;
+			if(wallet.getMoney()>0)
+			{
+				System.out.println("You have: " + wallet.getMoney() + " Press 's' to shoot 'q' to quit");
+				
+				//Make a new Scanner prompt
+				scanObj = new Scanner(System.in);
+				selection = scanObj.nextLine();
+			}
+			else
+			{
+				System.out.println("That's all you had left. But, you played well and had fun!");
+			}
+			
 		}
-		scanObj.close();
+		scanObj.close();  //manual scanner object close as failsafe
 
 	}
 }

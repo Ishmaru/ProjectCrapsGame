@@ -14,6 +14,12 @@ class MainTest {
 
 	}
 	@Test
+	void rollMax() {
+		int results = testRoll.rollDice();
+		assertTrue(results > 13);
+
+	}
+	@Test
 	void checkRoll1Win() {
 		int results = testRoll.initialRoll(7);
 		assertEquals(1, results);
