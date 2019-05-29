@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
-import craps.DiceRoll;
-import craps.Wallet;
+import com.craps.DiceRoll;
+import com.craps.Wallet;
 public class Main {
 
 	public static void main(String[] args) {
@@ -15,6 +15,7 @@ public class Main {
 		Scanner scanObj = new Scanner(System.in);
 		String selection = scanObj.nextLine();
 		
+		// while game loop. Waits for player response, ends when out of money or player types "q"
 		while(!selection.equals("q") && wallet.getMoney()>0) 
 		{
 			int current = 0;
@@ -39,6 +40,7 @@ public class Main {
 				}
 				else
 				{
+					//While loop for successive rools after first
 					while(current == 0){
 						current = dice.secondaryRoll(dice.rollDice());
 						if(current==-1)

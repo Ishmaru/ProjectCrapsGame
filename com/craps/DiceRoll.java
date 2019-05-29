@@ -1,4 +1,4 @@
-package craps;
+package com.craps;
 import java.util.Scanner;
 //import java.util.Random;
 

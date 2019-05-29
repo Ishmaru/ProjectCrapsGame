@@ -1,4 +1,4 @@
-package craps;
+package com.craps;
 public class Wallet {
 	private double currMoney;
 	private double currBet;
