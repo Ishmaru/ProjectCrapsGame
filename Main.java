@@ -5,12 +5,13 @@ import craps.Wallet;
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("Welcome to Tech Talent South craps");
-		System.out.println("Press 's' to shoot 'q' to quit");
 		
 		DiceRoll dice =  new DiceRoll();
 		Wallet wallet =  new Wallet(1000.00);
 		
+		System.out.println("Welcome to Tech Talent South craps");
+		System.out.println("You have: " + wallet.getMoney() + " Press 's' to shoot 'q' to quit");
+
 		Scanner scanObj = new Scanner(System.in);
 		String selection = scanObj.nextLine();
 		
@@ -54,7 +55,7 @@ public class Main {
 				}
 			}
 			dice.point = 0;
-			System.out.println("Your current wallet: " + wallet.getMoney());
+			System.out.println("You have: " + wallet.getMoney() + " Press 's' to shoot 'q' to quit");
 			scanObj = new Scanner(System.in);
 			selection = scanObj.nextLine();
 		}
