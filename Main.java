@@ -1,7 +1,11 @@
+//Midterm by Adrian & Jason
+
 import java.util.Scanner;
-//import java.util.Exception;
 import com.craps.DiceRoll;
 import com.craps.Wallet;
+
+
+
 public class Main {
 
 	public static void main(String[] args) {
