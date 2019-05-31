@@ -3,30 +3,32 @@
 import java.util.Scanner;
 import com.craps.DiceRoll;
 import com.craps.Wallet;
-
+import com.craps.UiStringController;
 
 
 public class Main {
 
 	public static void main(String[] args) {
 		//Initialize instances here:
+		UiStringController uiString =  new UiStringController();
 		DiceRoll dice =  new DiceRoll();
 		Wallet wallet =  new Wallet(1000.00);
 		
 		//Initial Message
-		System.out.println("Welcome to Tech Talent South craps");
-		System.out.println("You have: " + wallet.getMoney() + " Press 's' to shoot 'q' to quit");
+		System.out.println(uiString.generalText.get(1));
+		System.out.println(uiString.getConcatString(1, wallet.getMoney(), 2));
+
 		Scanner scanObj = new Scanner(System.in);
 		String selection = scanObj.nextLine();
 		
-		// while game loop. Waits for player response, ends when out of money or player types "q"
+		
 		while(!selection.equals("q") && wallet.getMoney()>0) 
 		{
 			int current = 0;
 			if(selection.equals("s") || selection.equals("S")) 
 			{
 				scanObj = new Scanner(System.in);
-				System.out.println("How much would you like to bet?");
+				System.out.println(uiString.generalText.get(2));
 				
 				// In case a input cannot be resolved to a double, set bet to 0.0;
 				double bet = 0;
@@ -34,22 +36,23 @@ public class Main {
 					bet = scanObj.nextDouble();
 				}
 				catch(Exception e) {
-					System.out.println("Bets must be made in numbers!");
+					System.out.println(uiString.generalText.get(3));
 				}
 				wallet.setBet(bet);
-				System.out.println("You bet: " + wallet.getBet());
+				System.out.println(uiString.getConcatString(1, wallet.getBet()));
 				
 				
 				//Roll dice and Check results from initialRoll()
 				int res = dice.initialRoll(dice.rollDice());
+				
 				if(res == 1) 
 				{
-					System.out.println("Winner easy!");
+					System.out.println(uiString.victoryText.get(res));
 					wallet.setMoney(wallet.getBet(), true);
 				}
 				else if (res == -1)
 				{
-					System.out.println("Not this time, friend!");
+					System.out.println(uiString.victoryText.get(res));
 					wallet.setMoney(wallet.getBet(), false);
 				}
 				else
@@ -62,12 +65,12 @@ public class Main {
 						//Check results from secondaryRoll()
 						if(current==-1)
 						{
-							System.out.println("Sorry, you crapped out!");
+							System.out.println(uiString.victoryText.get(current));
 							wallet.setMoney(wallet.getBet(), false);
 						}
 						if(current==1)
 						{
-							System.out.println("Winner, winner chicken dinner!");
+							System.out.println(uiString.victoryText.get(current));
 							wallet.setMoney(wallet.getBet(), true);
 						}
 					}
@@ -78,7 +81,8 @@ public class Main {
 			DiceRoll.point = 0;
 			if(wallet.getMoney()>0)
 			{
-				System.out.println("You have: " + wallet.getMoney() + " Press 's' to shoot 'q' to quit");
+				System.out.println(uiString.getConcatString(1, wallet.getMoney(), 2));
+//				System.out.println("You have: " + wallet.getMoney() + " Press 's' to shoot 'q' to quit");
 				
 				//Make a new Scanner prompt
 				scanObj = new Scanner(System.in);
@@ -86,7 +90,7 @@ public class Main {
 			}
 			else
 			{
-				System.out.println("That's all you had left. But, you played well and had fun!");
+				System.out.println(uiString.generalText.get(4));
 			}
 			
 		}

@@ -4,13 +4,14 @@ import java.util.Scanner;
 
 public class DiceRoll {
 	public static int point;
-	
+	UiStringController uiString =  new UiStringController();
 	
 	public int rollDice(){
 		
 		int dice1 = 1 + (int)(Math.random() * 6);
 		int dice2 = 1 + (int)(Math.random() * 6);
-		System.out.println("You rolled a: " + dice1 + " and a: " + dice2);
+		System.out.println(uiString.getConcatString(4,dice1, 5,dice2));
+//		System.out.println("You rolled a: " + dice1 + " and a: " + dice2);
 		return dice1 + dice2;
 	}
 	
